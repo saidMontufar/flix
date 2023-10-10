@@ -25,6 +25,9 @@
       </tr>
     </table>
   </div>
+  <p>
+    <%= link_to pluralize(@movie.reviews.count, 'Review'), movie_reviews_path(@movie)%>
+  </p>
 </section>
 
 <section class="admin">
