@@ -1,5 +1,5 @@
 <section class="movie-details">
-  <div class="movie">
+  <div class="image">
     <%= image_tag @movie.image_file_name %>
   </div>
   <div class="details">
@@ -7,6 +7,11 @@
     <h2>
       <%= year_of(@movie) %> &bull; <%= @movie.rating %>
     </h2>
+    <div class="reviews">
+      <%= average_stars(@movie) %>
+      <%= link_to pluralize(@movie.reviews.size, "review"),
+            movie_reviews_path(@movie) %>
+    </div>
     <p>
       <%= @movie.description %>
     </p>
@@ -16,7 +21,7 @@
         <td><%= @movie.director %></td>
       </tr>
       <tr>
-        <th>Duration</th>
+        <th>Duration:</th>
         <td><%= @movie.duration %></td>
       </tr>
       <tr>
@@ -24,20 +29,13 @@
         <td><%= total_gross(@movie) %></td>
       </tr>
     </table>
-
-
+    <%= link_to "Write Review", new_movie_review_path(@movie),
+          class: "review" %>
   </div>
-  <p>
-    <%= link_to pluralize(@movie.reviews.count, 'Review'), movie_reviews_path(@movie)%>
-  </p>
-  <p>
-    <%= link_to "Write a review", new_movie_review_path(@movie), class: "review" %>
-  </p>
-
 </section>
 
 <section class="admin">
-    <%= link_to "Edit", edit_movie_path, class: "button" %>
-    <%= link_to "Delete", @movie, class: "button",
-    data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  <%= link_to "Edit", edit_movie_path(@movie), class: "button" %>
+  <%= link_to "Delete", movie_path(@movie), class: "button",
+         data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
 </section>
