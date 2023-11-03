@@ -7,4 +7,6 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
+  get "signup" => "users#new"
+
 end
