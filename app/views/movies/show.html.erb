@@ -43,17 +43,27 @@
           class: "review" %>
   </div>
   <aside>
-      <% if @fans.present? %>
-        <h4>Fans</h4>
-        <ul>
-          <% @fans.each do |user| %>
-            <li>
-              <%= link_to user.name, user %>
-            </li>
-          <% end %>
-        </ul>
-      <% end %>
-    </aside>
+    <% if @fans.present? %>
+      <h4>Fans</h4>
+      <ul>
+        <% @fans.each do |user| %>
+          <li>
+            <%= link_to user.name, user %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+    <% if @genres.present?%>
+      <h4>Genres</h4>
+      <ul>
+        <% @genres.each do |genre| %>
+          <li>
+            <%= genre.name %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </aside>
 </section>
 
 
