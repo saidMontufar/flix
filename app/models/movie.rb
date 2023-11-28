@@ -17,12 +17,9 @@ class Movie < ApplicationRecord
 
   validates :rating, inclusion: { in: RATINGS}
 
-
-
-  def self.released
-    where("released_on < ?", Time.now).
-      order("released_on asc")
-  end
+  scope :released, -> { where("released_on < ?", Time.now).order("released_on asc") }
+  scope :upcoming, ->  { where("released_on > ?", Time.now).order("released_on asc") }
+  scope :recent, ->(max= 5) { released.limit(max)}
 
 
   def flop?
