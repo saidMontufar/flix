@@ -1,5 +1,7 @@
 class Movie < ApplicationRecord
 
+  before_save :set_slug
+
   has_many :reviews, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :fans, through: :favorites, source: :user
@@ -16,6 +18,7 @@ class Movie < ApplicationRecord
   RATINGS = %w(G PG PG-13 R NC-17)
 
   validates :rating, inclusion: { in: RATINGS}
+  # validates :slug, presence: true, uniqueness: true
 
   scope :released, -> { where("released_on < ?", Time.now).order("released_on asc") }
   scope :upcoming, ->  { where("released_on > ?", Time.now).order("released_on asc") }
@@ -28,6 +31,16 @@ class Movie < ApplicationRecord
 
   def average_stars
     reviews.average(:stars) || 0.0
+  end
+
+  def to_param
+    self.slug
+  end
+
+private
+
+  def set_slug
+    slug = title.parameterize
   end
 
 end
