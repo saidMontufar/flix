@@ -17,6 +17,7 @@ Movie.create!([
     }.squish,
     released_on: "2019-04-26",
     rating: 'PG-13',
+    duration: 120,
     total_gross: 1_223_641_414
   },
   {
@@ -27,6 +28,7 @@ Movie.create!([
     }.squish,
     released_on: "2019-03-08",
     rating: 'PG-13',
+    duration: 120,
     total_gross: 1_110_662_849
   },
   {
@@ -37,6 +39,7 @@ Movie.create!([
     }.squish,
     released_on: "2018-02-16",
     rating: 'PG-13',
+    duration: 120,
     total_gross: 1_346_913_161
   },
   {
@@ -47,6 +50,7 @@ Movie.create!([
     }.squish,
     released_on: "2018-04-27",
     rating: 'PG-13',
+    duration: 120,
     total_gross: 2_048_359_754
   },
   {
@@ -57,6 +61,7 @@ Movie.create!([
     }.squish,
     released_on: "2011-06-17",
     rating: 'PG-13',
+    duration: 120,
     total_gross: 219_851_172
   },
   {
@@ -67,6 +72,7 @@ Movie.create!([
     }.squish,
     released_on: "2015-08-07",
     rating: 'PG-13',
+    duration: 120,
     total_gross: 168_257_860
   },
   {
@@ -79,6 +85,7 @@ Movie.create!([
     }.squish,
     released_on: "2008-05-02",
     rating: 'PG-13',
+    duration: 120,
     total_gross: 585_366_247
   },
   {
@@ -91,6 +98,7 @@ Movie.create!([
     }.squish,
     released_on: "1978-12-15",
     rating: 'PG',
+    duration: 120,
     total_gross: 300_451_603
   },
   {
@@ -104,6 +112,7 @@ Movie.create!([
     }.squish,
     released_on: "2002-05-03",
     rating: 'PG-13',
+    duration: 120,
     total_gross: 825_025_036
   },
   {
@@ -115,6 +124,7 @@ Movie.create!([
     }.squish,
     released_on: "1989-06-23",
     rating: 'PG-13',
+    duration: 120,
     total_gross: 411_348_924
   },
   {
@@ -125,6 +135,7 @@ Movie.create!([
     }.squish,
     released_on: "2004-07-23",
     rating: "PG-13",
+    duration: 120,
     total_gross: 82_102_379
   },
   {
@@ -135,6 +146,24 @@ Movie.create!([
     }.squish,
     released_on: "2017-06-02",
     rating: "PG-13",
+    duration: 120,
     total_gross: 821_847_012
   }
 ])
+
+[
+  ["Avengers: Endgame", "avengers-end-game"],
+ ["Captain Marvel", "captain-marvel"],
+ ["Black Panther", "black-panther"],
+ ["Avengers: Infinity War", "avengers-infinity-war"],
+ ["Green Lantern", "green-lantern"],
+ ["Fantastic Four", "fantastic-four"],
+ ["Iron Man", "iron-man"],
+ ["Spider-Man", "spider-man"],
+ ["Batman", "batman"],
+ ["Catwoman", "catwoman"],
+ ["Wonder Woman", "wonder-woman"]].each do |movie_title, file_name|
+  movie = Movie.find_by!(title: movie_title)
+  file = File.open(Rails.root.join("app/assets/images/#{file_name}.png"))
+  movie.main_image.attach(io: file, filename: file_name)
+end
