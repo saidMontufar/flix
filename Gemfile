@@ -7,7 +7,6 @@ ruby "3.1.2"
 ####------ My gems ----------
 
 gem "rails_refactor"
-gem "aws-sdk-s3"
 
 
 
