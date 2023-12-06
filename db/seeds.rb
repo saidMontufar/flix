@@ -167,3 +167,10 @@ Movie.create!([
   file = File.open(Rails.root.join("app/assets/images/#{file_name}.png"))
   movie.main_image.attach(io: file, filename: file_name)
 end
+
+User.create!([
+  {
+    name: "Said Montufar",
+    email: "said@example.com",
+    admin: true
+    }])
