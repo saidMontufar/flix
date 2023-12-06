@@ -172,5 +172,6 @@ User.create!([
   {
     name: "Said Montufar",
     email: "said@example.com",
+    password_digest: "test123",
     admin: true
-    }])
+}])
